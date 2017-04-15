@@ -21,7 +21,15 @@ FROM codeclou/docker-atlassian-base-images:confluence-6.1.1
 ...
 ```
 
-See the Dockerfiles here for internal structure.
+See the Dockerfiles here for internal structure. Basically all images have the following structure:
+
+ * `/confluence/` = where Confluence is extracted to
+ * `/confluence-home/` = Confluence Home
+ * `/confluence-shared-home/` = Confluence Shared Home for Confluence Data Center
+ * User `worker` with UID and GID 10777 is created and all files and dirs are owned by him
+ * `/work` can be used as Volume when inspecting container to exchange data
+ * `/work-private` can be used to place files like docker-entrypoint.sh and other configs.
+ * jinja2-cli is installed, so that you can run `jinja2 myscript.sh.jinja2 env-variables.json > myscript.sh`
 
 -----
 
