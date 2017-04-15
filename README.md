@@ -30,6 +30,7 @@ See the Dockerfiles here for internal structure. Basically all images have the f
  * `/work` can be used as Volume when inspecting container to exchange data
  * `/work-private` can be used to place files like docker-entrypoint.sh and other configs.
  * jinja2-cli is installed, so that you can run `jinja2 myscript.sh.jinja2 env-variables.json > myscript.sh`
+ * Symlink is created so that install dir can be accessed like so `/confluence/atlassian-confluence-latest/bin/catalina.sh`
 
 -----
 
