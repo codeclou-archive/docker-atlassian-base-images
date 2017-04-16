@@ -50,7 +50,7 @@ See the Dockerfiles here for internal structure. Basically all images have the f
 ### Trademarks and Third Party Licenses
 
  * **Atlassian JIRA® Sofware**
-   * Atlassian®, Confluence®, JIRA®, JIRA® Software are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark). 
+   * Atlassian®, Confluence®, JIRA®, JIRA® Software are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark).
    * Please check yourself for corresponding Licenses and Terms of Use at [atlassian.com](https://atlassian.com).
  * **Oracle Java JDK 8**
    * Oracle and Java are registered [trademarks of Oracle](https://www.oracle.com/legal/trademarks.html) and/or its affiliates. Other names may be trademarks of their respective owners.
