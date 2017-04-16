@@ -16,9 +16,9 @@ Used by:
 You can extend from such a base image in your `Dockerfile` like so:
 
  * **[confluence-6.1.1](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.1/Dockerfile)**
-    * Dockerfile: `FROM codeclou/docker-atlassian-base-images:confluence-6.1.1`
+    * Dockerfile: `FROM codeclou/docker-atlassian-base-images:confluence-6.1.1`
  * **[jira-software-7.3.3](https://github.com/codeclou/docker-atlassian-base-images/blob/jira-software-7.3.3/Dockerfile)**
-    * Dockerfile: `FROM codeclou/docker-atlassian-base-images:jira-software-7.3.3`
+    * Dockerfile: `FROM codeclou/docker-atlassian-base-images:jira-software-7.3.3`
 
 
 See the Dockerfiles here for internal structure. Basically all images have the following structure:
