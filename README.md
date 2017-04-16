@@ -18,7 +18,9 @@ You can extend from such a base image in your `Dockerfile` like so:
 ```
 FROM codeclou/docker-atlassian-base-images:confluence-6.1.1
 
-...
+# OR
+
+FROM codeclou/docker-atlassian-base-images:jira-software-7.3.3
 ```
 
 See the Dockerfiles here for internal structure. Basically all images have the following structure:
@@ -29,7 +31,7 @@ See the Dockerfiles here for internal structure. Basically all images have the f
  * User `worker` with UID and GID 10777 is created and all files and dirs are owned by him
  * `/work` can be used as Volume when inspecting container to exchange data
  * `/work-private` can be used to place files like docker-entrypoint.sh and other configs.
- * jinja2-cli is installed, so that you can run `jinja2 myscript.sh.jinja2 env-variables.json > myscript.sh`
+ * shinto-cli is installed, so that you can run `env | j2 myscript.sh.jinja2 > myscript.sh`
  * Symlink is created so that install dir can be accessed like so `/confluence/atlassian-confluence-latest/bin/catalina.sh`
 
 -----
