@@ -38,7 +38,7 @@ See the Dockerfiles here for internal structure. Basically all images have the f
 
 ### Docker Hub Build Settings
 
-![](./doc/dockerhub-build-settings.png)
+![](./doc/dockerhub-build-settings.png?v2)
 
 
 -----
