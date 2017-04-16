@@ -38,6 +38,15 @@ See the Dockerfiles here for internal structure. Basically all images have the f
 
 &nbsp;
 
+### Docker Hub Build Settings
+
+![](./doc/dockerhub-build-settings.png)
+
+
+-----
+
+&nbsp;
+
 ### License
 
 [MIT](./LICENSE) © [Bernhard Grünewaldt](https://github.com/clouless)
