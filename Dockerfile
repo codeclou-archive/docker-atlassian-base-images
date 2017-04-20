@@ -1,4 +1,4 @@
-FROM codeclou/docker-oracle-jdk:8u121
+FROM codeclou/docker-oracle-jdk:8u131
 
 ENV CONFLUENCE_VERSION 6.1.1
 
