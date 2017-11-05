@@ -1,6 +1,6 @@
 FROM codeclou/docker-oracle-jdk:8u141
 
-ENV CONFLUENCE_VERSION 6.4.0
+ENV CONFLUENCE_VERSION 6.5.0
 
 RUN addgroup -g 10777 worker && \
     adduser -h /work -H -D -G worker -u 10777 worker && \
