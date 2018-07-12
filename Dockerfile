@@ -1,6 +1,6 @@
 FROM codeclou/docker-oracle-jdk:8u152
 
-ENV JIRA_VERSION 7.10.0
+ENV JIRA_VERSION 7.11.0
 
 RUN addgroup -g 10777 worker && \
     adduser -h /work -H -D -G worker -u 10777 worker && \
