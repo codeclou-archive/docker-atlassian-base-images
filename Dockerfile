@@ -1,7 +1,31 @@
-FROM codeclou/docker-oracle-jdk:8u152
+#
+# SINCE JIRA 7.13 WE USE OFFICAL OPENJDK ALPINE IMAGE
+#
+FROM openjdk:8u181-alpine3.8
 
-ENV JIRA_VERSION 7.12.0
+ENV JIRA_VERSION 7.13.0
 
+#
+# INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
+#
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-1.8-openjdk/lib/amd64/:/usr/lib/:/lib/
+RUN apk add --no-cache libgcc \
+                       ttf-dejavu \
+                       fontconfig \
+                       libgcc
+#
+# TEST FONT CONFIG (there should be no errors)
+#
+RUN mkdir -p /opt/test-fontconfig
+ADD test.ttf /opt/test-fontconfig/
+ADD TestFontConfig.java /opt/test-fontconfig/
+RUN cd /opt/test-fontconfig/ && \
+    javac TestFontConfig.java && \
+    java -Dsun.java2d.debugfonts=true -cp . TestFontConfig
+
+#
+# INSTALL
+#
 RUN addgroup -g 10777 worker && \
     adduser -h /work -H -D -G worker -u 10777 worker && \
     mkdir -p /work && \
