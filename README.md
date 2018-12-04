@@ -1,6 +1,6 @@
 # docker-atlassian-base-images
 
-Base Images of [Atlassian Software](https://de.atlassian.com/) used in other Images based on [Alpine Linux](https://alpinelinux.org/) with [Oracle JDK 8](https://www.oracle.com/de/java/).
+Base Images of [Atlassian Software](https://de.atlassian.com/) used in other Images based on [Alpine Linux](https://alpinelinux.org/) with [Oracle JDK 8](https://www.oracle.com/de/java/). Since JIRA 7.13 we use OpenJDK.
 
 Used by the following Docker images:
 
@@ -17,8 +17,8 @@ You can extend from such a base image in your `Dockerfile` like so:
 
  * **[confluence-6.1.1](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.1/Dockerfile)**
     * Dockerfile: `FROM codeclou/docker-atlassian-base-images:confluence-6.1.1`
- * **[jira-software-7.3.3](https://github.com/codeclou/docker-atlassian-base-images/blob/jira-software-7.3.3/Dockerfile)**
-    * Dockerfile: `FROM codeclou/docker-atlassian-base-images:jira-software-7.3.3`
+ * **[jira-software-7.13.0](https://github.com/codeclou/docker-atlassian-base-images/blob/jira-software-7.13.0/Dockerfile)**
+    * Dockerfile: `FROM codeclou/docker-atlassian-base-images:jira-software-7.13.0`
 
 -----
 
