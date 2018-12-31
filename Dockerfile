@@ -1,18 +1,30 @@
 #
-# SINCE JIRA 7.13 WE USE OFFICAL OPENJDK ALPINE IMAGE
+# https://github.com/AdoptOpenJDK/openjdk-docker
+# https://hub.docker.com/r/adoptopenjdk/openjdk11/tags
 #
-FROM openjdk:8u181-alpine3.8
+FROM adoptopenjdk/openjdk11:jdk-11.0.1.13-alpine-slim
 
-ENV JIRA_VERSION 7.13.0
+ENV JIRA_DOWNLOAD_VERSION   8.0.0-BETA
+ENV JIRA_FILESYSTEM_VERSION 8.0.0-m0030
+#
+# ESSENTIALS
+#
+RUN apk add --no-cache \
+            bash \
+            curl \
+            tar
 
 #
-# INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
+# INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH (https://github.com/AdoptOpenJDK/openjdk-docker/issues/75)
 #
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-1.8-openjdk/lib/amd64/:/usr/lib/:/lib/
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/
 RUN apk add --no-cache libgcc \
                        ttf-dejavu \
                        fontconfig \
-                       libgcc
+                       libgcc && \
+    ln -s /lib/libc.musl-x86_64.so.1 /usr/lib/libc.musl-x86_64.so.1
+
+
 #
 # TEST FONT CONFIG (there should be no errors)
 #
@@ -22,6 +34,7 @@ ADD TestFontConfig.java /opt/test-fontconfig/
 RUN cd /opt/test-fontconfig/ && \
     javac TestFontConfig.java && \
     java -Dsun.java2d.debugfonts=true -cp . TestFontConfig
+
 
 #
 # INSTALL
@@ -34,17 +47,14 @@ RUN addgroup -g 10777 worker && \
     chown -R worker:worker /work/ && \
     chown -R worker:worker /work-private/ && \
     apk add --no-cache \
-            bash \
-            curl \
-            tar \
             python \
             py-pip && \
             pip install shinto-cli && \
     curl -jkSL -o /opt/jira.tar.gz \
-         https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}.tar.gz  && \
+         https://product-downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-${JIRA_DOWNLOAD_VERSION}.tar.gz && \
     tar zxf /opt/jira.tar.gz -C /jira && \
     cd /jira && \
-    ln -s atlassian-jira-software-${JIRA_VERSION}-standalone atlassian-jira-software-latest-standalone && \
+    ln -s atlassian-jira-software-${JIRA_FILESYSTEM_VERSION}-standalone atlassian-jira-software-latest-standalone && \
     rm /opt/jira.tar.gz && \
     chown -R worker:worker /jira && \
     chown -R worker:worker /jira-home/ && \
