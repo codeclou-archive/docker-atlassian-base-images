@@ -1,8 +1,10 @@
 #
 # https://github.com/AdoptOpenJDK/openjdk-docker
 # https://hub.docker.com/r/adoptopenjdk/openjdk11/tags
+# https://hub.docker.com/r/adoptopenjdk/openjdk8/tags
 #
-FROM adoptopenjdk/openjdk11:jdk-11.0.1.13-alpine-slim
+## LATER: FROM adoptopenjdk/openjdk11:jdk-11.0.1.13-alpine
+FROM adoptopenjdk/openjdk8:jdk8u192-b12-alpine
 
 ENV JIRA_DOWNLOAD_VERSION   8.0.0-BETA
 ENV JIRA_FILESYSTEM_VERSION 8.0.0-m0030
