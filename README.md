@@ -41,9 +41,9 @@ See the Dockerfiles here for internal structure. Basically all images have the f
 
 &nbsp;
 
-### Docker Hub Build Settings
+### Docker Hub
 
-![](./doc/dockerhub-build-settings.png?v2)
+We manually push to docker hub via our Jenkins. See: https://github.com/codeclou/docker-common-build
 
 
 -----
