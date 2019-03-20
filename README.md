@@ -1,6 +1,6 @@
 # docker-atlassian-base-images
 
-Base Images of [Atlassian Software](https://de.atlassian.com/) used in other Images based on [Alpine Linux](https://alpinelinux.org/) with [Oracle JDK 8](https://www.oracle.com/de/java/). Since JIRA 7.13 and Confluence 6.13 we use OpenJDK.
+Base Images of [Atlassian Software](https://de.atlassian.com/) used in other images. Please check trademarks and licenses below.
 
 Used by the following Docker images:
 
