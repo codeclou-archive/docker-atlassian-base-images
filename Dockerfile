@@ -1,18 +1,18 @@
 #
-# SINCE CONFLUENCE 6.13 WE USE OFFICAL OPENJDK ALPINE IMAGE
+# Switch to ubuntu, since alpine image has fontConfig errors
 #
-FROM openjdk:8u181-alpine3.8
+FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.2.9
 
-ENV CONFLUENCE_VERSION 6.15.1
+ENV CONFLUENCE_VERSION 7.0.1-m02
+ENV DEBIAN_FRONTEND noninteractive
+
 
 #
 # INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
 #
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-1.8-openjdk/lib/amd64/:/usr/lib/:/lib/
-RUN apk add --no-cache libgcc \
+RUN apt-get update && apt-get -y install \
                        ttf-dejavu \
-                       fontconfig \
-                       libgcc
+                       libfontconfig1 
 #
 # TEST FONT CONFIG (there should be no errors)
 #
@@ -23,22 +23,21 @@ RUN cd /opt/test-fontconfig/ && \
     javac TestFontConfig.java && \
     java -Dsun.java2d.debugfonts=true -cp . TestFontConfig
 
-RUN addgroup -g 10777 worker && \
-    adduser -h /work -H -D -G worker -u 10777 worker && \
+RUN addgroup --gid 10777 worker && \
+    adduser --home /work  --gid 10777 --uid 10777 --disabled-password --gecos "" worker && \
     mkdir -p /work && \
     mkdir -p /work-private && \
     mkdir /confluence && mkdir /confluence-home && mkdir /confluence-shared-home && \
     chown -R worker:worker /work/ && \
     chown -R worker:worker /work-private/ && \
-    apk add --no-cache \
+    apt-get -y install \
             bash \
-            musl-utils \
             curl \
             tar \
             postgresql \
             postgresql-client \
             python \
-            py-pip && \
+            python-pip && \
             pip install shinto-cli && \
     curl -jkSL -o /opt/confluence.tar.gz \
          https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
