@@ -1,18 +1,15 @@
-#
-# SINCE JIRA 7.13 WE USE OFFICAL OPENJDK ALPINE IMAGE
-#
-FROM openjdk:8u181-alpine3.8
+FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u202-b08
+
 
 ENV JIRA_VERSION 8.1.0
 
 #
 # INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
 #
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-1.8-openjdk/lib/amd64/:/usr/lib/:/lib/
-RUN apk add --no-cache libgcc \
+RUN apt-get update && apt-get -y install \
                        ttf-dejavu \
-                       fontconfig \
-                       libgcc
+                       libfontconfig1 
+
 #
 # TEST FONT CONFIG (there should be no errors)
 #
@@ -26,19 +23,21 @@ RUN cd /opt/test-fontconfig/ && \
 #
 # INSTALL
 #
-RUN addgroup -g 10777 worker && \
-    adduser -h /work -H -D -G worker -u 10777 worker && \
+RUN addgroup --gid 10777 worker && \
+    adduser --home /work  --gid 10777 --uid 10777 --disabled-password --gecos "" worker && \
     mkdir -p /work && \
     mkdir -p /work-private && \
     mkdir /jira && mkdir /jira-home && mkdir /jira-shared-home && \
     chown -R worker:worker /work/ && \
     chown -R worker:worker /work-private/ && \
-    apk add --no-cache \
+    apt-get -y install \
             bash \
             curl \
             tar \
+            postgresql \
+            postgresql-client \
             python \
-            py-pip && \
+            python-pip && \
             pip install shinto-cli && \
     curl -jkSL -o /opt/jira.tar.gz \
          https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}.tar.gz  && \
