@@ -48,6 +48,7 @@ RUN addgroup --gid 10777 worker && \
     rm /opt/jira.tar.gz && \
     chown -R worker:worker /jira && \
     chown -R worker:worker /jira-home/ && \
-    chown -R worker:worker /jira-shared-home
+    chown -R worker:worker /jira-shared-home && \
+    chown -R worker:worker /opt/java/openjdk/
 
 
