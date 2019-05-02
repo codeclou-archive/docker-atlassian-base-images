@@ -1,6 +1,5 @@
 FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u202-b08
 
-
 ENV JIRA_VERSION 8.1.0
 ENV DEBIAN_FRONTEND=noninteractive
 
