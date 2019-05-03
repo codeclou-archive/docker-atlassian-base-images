@@ -7,14 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 #
 # INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
 #
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-1.8-openjdk/lib/amd64/:/usr/lib/:/lib/
-RUN apk add --no-cache libgcc \
-                       ttf-dejavu \
-                       fontconfig \
-                       libgcc
-#
-# INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
-#
 RUN apt-get update && apt-get -y install \
                        ttf-dejavu \
                        libfontconfig1 
