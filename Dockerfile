@@ -1,9 +1,8 @@
-#
-# SINCE CONFLUENCE 6.13 WE USE OFFICAL OPENJDK ALPINE IMAGE
-#
-FROM openjdk:8u181-alpine3.8
+FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u202-b08
 
-ENV CONFLUENCE_VERSION 6.15.1
+
+ENV CONFLUENCE_VERSION 6.15.3
+ENV DEBIAN_FRONTEND=noninteractive
 
 #
 # INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
@@ -14,6 +13,13 @@ RUN apk add --no-cache libgcc \
                        fontconfig \
                        libgcc
 #
+# INSTALL FONTCONFIG AND FIX LD_LIBRARY_PATH
+#
+RUN apt-get update && apt-get -y install \
+                       ttf-dejavu \
+                       libfontconfig1 
+
+#
 # TEST FONT CONFIG (there should be no errors)
 #
 RUN mkdir -p /opt/test-fontconfig
@@ -23,22 +29,24 @@ RUN cd /opt/test-fontconfig/ && \
     javac TestFontConfig.java && \
     java -Dsun.java2d.debugfonts=true -cp . TestFontConfig
 
-RUN addgroup -g 10777 worker && \
-    adduser -h /work -H -D -G worker -u 10777 worker && \
+#
+# INSTALL
+#
+RUN addgroup --gid 10777 worker && \
+    adduser --home /work  --gid 10777 --uid 10777 --disabled-password --gecos "" worker && \
     mkdir -p /work && \
     mkdir -p /work-private && \
-    mkdir /confluence && mkdir /confluence-home && mkdir /confluence-shared-home && \
+    mkdir /jira && mkdir /jira-home && mkdir /jira-shared-home && \
     chown -R worker:worker /work/ && \
     chown -R worker:worker /work-private/ && \
-    apk add --no-cache \
+    apt-get -y install \
             bash \
-            musl-utils \
             curl \
             tar \
             postgresql \
             postgresql-client \
             python \
-            py-pip && \
+            python-pip && \
             pip install shinto-cli && \
     curl -jkSL -o /opt/confluence.tar.gz \
          https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
@@ -49,4 +57,5 @@ RUN addgroup -g 10777 worker && \
     chown -R worker:worker /confluence && \
     chown -R worker:worker /confluence-home/ && \
     chown -R worker:worker /confluence-shared-home && \
+    chown -R worker:worker /opt/java/openjdk/ && \
     echo -e "\nconfluence.home=/confluence-home/" >> /confluence/atlassian-confluence-latest/confluence/WEB-INF/classes/confluence-init.properties
