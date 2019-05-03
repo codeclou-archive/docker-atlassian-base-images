@@ -28,7 +28,7 @@ RUN addgroup --gid 10777 worker && \
     adduser --home /work  --gid 10777 --uid 10777 --disabled-password --gecos "" worker && \
     mkdir -p /work && \
     mkdir -p /work-private && \
-    mkdir /jira && mkdir /jira-home && mkdir /jira-shared-home && \
+    mkdir /confluence && mkdir /confluence-home && mkdir /confluence-shared-home && \
     chown -R worker:worker /work/ && \
     chown -R worker:worker /work-private/ && \
     apt-get -y install \
