@@ -1,7 +1,7 @@
-FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u202-b08
+FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3_7
 
 
-ENV JIRA_VERSION 8.1.0
+ENV JIRA_VERSION 8.2.0
 ENV DEBIAN_FRONTEND=noninteractive
 
 #
@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 #
 RUN apt-get update && apt-get -y install \
                        ttf-dejavu \
-                       libfontconfig1 
+                       libfontconfig1
 
 #
 # TEST FONT CONFIG (there should be no errors)
@@ -50,5 +50,3 @@ RUN addgroup --gid 10777 worker && \
     chown -R worker:worker /jira-home/ && \
     chown -R worker:worker /jira-shared-home && \
     chown -R worker:worker /opt/java/openjdk/
-
-
