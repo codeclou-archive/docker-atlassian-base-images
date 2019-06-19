@@ -1,7 +1,8 @@
 FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3_7
 
 # EAP02 === m0003
-ENV JIRA_VERSION 8.3.0-EAP02
+ENV JIRA_VERSION 8.3.0-m0003
+ENV JIRA_DOWNLOAD_VERSION 8.3.0-EAP02
 ENV DEBIAN_FRONTEND=noninteractive
 
 #
@@ -41,7 +42,7 @@ RUN addgroup --gid 10777 worker && \
             python-pip && \
             pip install shinto-cli && \
     curl -jkSL -o /opt/jira.tar.gz \
-         https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}.tar.gz  && \
+         https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_DOWNLOAD_VERSION}.tar.gz  && \
     tar zxf /opt/jira.tar.gz -C /jira && \
     cd /jira && \
     ln -s atlassian-jira-software-${JIRA_VERSION}-standalone atlassian-jira-software-latest-standalone && \
