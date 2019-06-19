@@ -1,7 +1,7 @@
 FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3_7
 
-
-ENV JIRA_VERSION 8.2.0
+# EAP02 === m0003
+ENV JIRA_VERSION 8.3.0-EAP02
 ENV DEBIAN_FRONTEND=noninteractive
 
 #
