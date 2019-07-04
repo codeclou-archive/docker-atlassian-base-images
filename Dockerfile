@@ -1,7 +1,7 @@
 #
 # Switch to ubuntu, since alpine image has fontConfig errors
 #
-## Still not java 11 compatible! FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3.7
+### Still not java 11 compatible! FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3.7
 FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u212-b04
 
 ENV CONFLUENCE_VERSION 7.0.1-m103
