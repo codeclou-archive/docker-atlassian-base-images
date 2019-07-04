@@ -1,7 +1,7 @@
 #
 # Switch to ubuntu, since alpine image has fontConfig errors
 #
-FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.2.9
+FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3.7
 
 ENV CONFLUENCE_VERSION 7.0.1-m103
 ENV DEBIAN_FRONTEND noninteractive
