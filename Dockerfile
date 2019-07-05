@@ -1,4 +1,7 @@
-FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3_7
+## Does not work with Java 11
+##FROM adoptopenjdk/openjdk11:x86_64-ubuntu-jdk-11.0.3_7
+
+FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jre8u212-b04
 
 # EAP02 === m0003
 ENV JIRA_VERSION 8.3.0-m0003
