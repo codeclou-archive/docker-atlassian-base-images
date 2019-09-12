@@ -1,5 +1,7 @@
 # docker-atlassian-base-images
 
+### ‼️ Deprecated and Discontinued ‼️ please use official images from https://hub.docker.com/u/atlassian/
+
 Base Images of [Atlassian Software](https://de.atlassian.com/) used in other images. Please check trademarks and licenses below.
 
 Used by the following Docker images:
